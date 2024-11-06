@@ -1,12 +1,20 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+public class DigitalProduct extends Product{
+    private double size;
 
-/**
- *
- * @author FPT SHOP
- */
-public class DigitalProduct {
-    
+    public double getSize() {
+        return size;
+    }
+
+    public void setSize(double size) {
+        this.size = size;
+    }
+
+    public DigitalProduct(int productId, String name, double price, int quantity, double size) {
+        super(productId, name, price, quantity);
+        this.size = size;
+    }
+    @Override
+    public String getInfo(){
+        return super.getInfo() + ", Size: " + size;
+    }
 }

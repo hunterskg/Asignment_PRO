@@ -1,50 +1,33 @@
 import java.util.ArrayList;
 import java.util.List;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-/**
- *
- * @author OS
- */
-public class Order{
+public class Order {
+    private Customer customer;
+    private List<OrderItem> items = new ArrayList<>();
+    private double totalPrice = 0.0;
 
-    int orderId;
-    Customer customer;
-    List<Product> products;
-    double totalAmount;
-
-    public Order(int orderId, Customer customer) {
-        this.orderId = orderId;
+    public Order(Customer customer) {
         this.customer = customer;
-        this.products = new ArrayList<>();
-        this.totalAmount = 0.0;
     }
-    
-    public void addProduct(Product product, int quantity){
-        product.updateQuantity(quantity);
-        products.add(product);
-    }
-    
-    public double calculateTotal(){
-        totalAmount = 0.0;
-        for(Product prd : products){
-            totalAmount += prd.getPrice() *  prd.getQuantity();
+
+    public void addProduct(Product product, int quantity) {
+        if (product.getQuantity() >= quantity) {
+            product = new Product(product.getProductId(), product.getName(), product.getPrice(), quantity);
+            items.add(new OrderItem(product, quantity));
+            totalPrice += product.getPrice() * quantity;
+            System.out.println("Product added to order.");
+        } else {
+            System.out.println("Insufficient stock for " + product.getName());
         }
-        return totalAmount;
     }
-    
-    public String getOrderDetails(){
+
+    public String getOrderDetails() {
         StringBuilder details = new StringBuilder();
-        details.append("Order ID: ").append(orderId);
-        details.append("Customer Info: ").append(customer.getInfo()).append("\n");
-        details.append("Product List: ");
-        for(Product prd: products){
-            details.append(prd.getInfo()).append("\n");
+        details.append("Order for " + customer.getName() + " (ID: " + customer.getCustomerId() + ")\n");
+        for (OrderItem item : items) {
+            details.append(item.getProduct().getInfo() + ", Quantity: " + item.getQuantity() + "\n");
         }
-        details.append(totalAmount).append("\n");
+        details.append("Total: $" + totalPrice);
         return details.toString();
     }
 }

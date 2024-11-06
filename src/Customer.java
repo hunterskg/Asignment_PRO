@@ -9,6 +9,19 @@ public class Customer {
         this.email = email;
     }
 
+    public int getCustomerId() {
+        return customerId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+    
+    
     public String getInfo() {
         return "Customer ID: " + customerId + ", Name: " + name + ", Email: " + email;
     }

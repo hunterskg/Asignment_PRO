@@ -1,3 +1,4 @@
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -7,10 +8,13 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         Store store = new Store();
 
-        // Add products to store
+        // Thêm sản phẩm vào cửa hàng
         addProductsToStore(store, scanner);
 
-        // Create customer
+        // Ghi danh sách sản phẩm ra file
+        store.saveProductsToFile("products.txt");
+
+        // Tạo khách hàng
         System.out.print("Enter Customer ID: ");
         int customerId = scanner.nextInt();
         scanner.nextLine(); // consume newline
@@ -20,19 +24,20 @@ public class Main {
         String customerEmail = scanner.nextLine();
         Customer customer = new Customer(customerId, customerName, customerEmail);
 
-        // Create order for customer
+        // Tạo đơn hàng cho khách hàng
         Order order = store.createOrder(customer);
-
-        // Add products to order
         addProductsToOrder(order, store, scanner);
 
-        // Print order details
+        // Ghi chi tiết đơn hàng ra file
+        order.saveOrderToFile("order.txt");
+
         System.out.println("Order created successfully!");
         System.out.println(order.getOrderDetails());
 
         scanner.close();
     }
 
+    // Các phương thức thêm sản phẩm và tạo đơn hàng (đã có ở trên)
     private static void addProductsToStore(Store store, Scanner scanner) {
         System.out.print("Enter number of products to add to store: ");
         int numProducts = scanner.nextInt();
@@ -74,36 +79,40 @@ public class Main {
             }
         }
     }
-
     private static void addProductsToOrder(Order order, Store store, Scanner scanner) {
-        int productChoice;
-        do {
-            System.out.println("Available Products:");
-            for (Product product : store.getProducts()) {
-                System.out.println(product.getInfo());
+    int productChoice;
+    do {
+        System.out.println("Available Products:");
+        for (Product product : store.getProducts()) {
+            System.out.println(product.getInfo()); // Hiển thị thông tin của mỗi sản phẩm
+        }
+
+        System.out.print("Enter Product ID to add to order (0 to finish): ");
+        productChoice = scanner.nextInt();
+
+        if (productChoice != 0) {
+            Product product = null;
+            for (Product p : store.getProducts()) {
+                if (p.getProductId() == productChoice) {
+                    product = p;
+                    break;
+                }
             }
 
-            System.out.print("Enter Product ID to add to order (0 to finish): ");
-            productChoice = scanner.nextInt();
+            if (product != null) {
+                System.out.print("Enter Quantity: ");
+                int quantity = scanner.nextInt();
 
-            if (productChoice != 0) {
-                Product product = null;
-                for (Product p : store.getProducts()) {
-                    if (p.getProductId() == productChoice) {
-                        product = p;
-                        break;
-                    }
-                }
-
-                if (product != null) {
-                    System.out.print("Enter Quantity: ");
-                    int quantity = scanner.nextInt();
-                    order.addProduct(product, quantity);
+                // Thêm sản phẩm vào đơn hàng và giảm số lượng nếu thành công
+                if (order.addProduct(product, quantity)) {
                     System.out.println("Product added to order.");
                 } else {
-                    System.out.println("Product not found.");
+                    System.out.println("Not enough stock for this quantity.");
                 }
+            } else {
+                System.out.println("Product not found.");
             }
-        } while (productChoice != 0);
-    }
+        }
+    } while (productChoice != 0);
+}
 }

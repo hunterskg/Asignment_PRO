@@ -1,0 +1,3 @@
+Product ID: 1, Name: Laptop, Price: 1000.0, Quantity: 0
+Product ID: 2, Name: Mouse, Price: 20.0, Quantity: 7
+Product ID: 3, Name: Keyboard, Price: 30.0, Quantity: 29

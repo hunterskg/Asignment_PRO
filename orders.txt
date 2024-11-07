@@ -1,0 +1,40 @@
+Order ID: 1
+Customer: ID: 1, Name: qwe, Email: asd
+Total Amount: 240.0
+Products:
+Product ID: 2, Name: Mouse, Price: 20.0, Quantity: 12
+Order ID: 1
+Customer: ID: 1, Name: qwe, Email: asd
+Total Amount: 60.0
+Products:
+Product ID: 2, Name: Mouse, Price: 20.0, Quantity: 3
+Order ID: 1
+Customer: ID: 1, Name: qwe, Email: asd
+Total Amount: 0.0
+Products:
+Product ID: 2, Name: Mouse, Price: 20.0, Quantity: 0Product ID: 2, Name: Mouse, Price: 20.0, Quantity: 0Product ID: 2, Name: Mouse, Price: 20.0, Quantity: 0
+Order ID: 1
+Customer: ID: 1, Name: qwe, Email: asd
+Total Amount: 0.0
+Products:
+Product ID: 2, Name: Mouse, Price: 20.0, Quantity: 0
+Order ID: 1
+Customer: ID: 1, Name: qwe, Email: asd
+Total Amount: 20.0
+Products:
+Product ID: 2, Name: Mouse, Price: 20.0, Quantity: 1
+Order ID: 1
+Customer: ID: 1, Name: qwe, Email: asd
+Total Amount: 20.0
+Products:
+Product ID: 2, Name: Mouse, Price: 20.0, Quantity: 1
+Order ID: 1
+Customer: ID: 1, Name: qwe, Email: asd
+Total Amount: 40.0
+Products:
+Product ID: 2, Name: Mouse, Price: 20.0, Quantity: 1Product ID: 2, Name: Mouse, Price: 20.0, Quantity: 1
+Order ID: 2
+Customer: ID: 1, Name: qwe, Email: asd
+Total Amount: 30.0
+Products:
+Product ID: 3, Name: Keyboard, Price: 30.0, Quantity: 1
